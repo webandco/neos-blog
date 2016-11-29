@@ -1,5 +1,5 @@
 {
-    "name": "webandco/neos-block",
+    "name": "webandco/neos-blog",
     "type": "typo3-flow-package",
     "description": "web&co neos blog with taxonomies",
     "keywords": ["typo3", "flow", "neos", "blog", "taxonomy"],
