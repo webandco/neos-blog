@@ -25,7 +25,7 @@
     "require": {
         "typo3/neos": "^2.0",
         "flowpack/listable": "^0.4",
-        "webandco/base": "*",
+        "webandco/neos-base": "^1.0",
         "webandco/neos-taxonomy": "^2.1"
     },
     "autoload": {
