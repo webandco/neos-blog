@@ -1,0 +1,7 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+
+{content.image}
+<em><f:if condition="{content.author}">{content.author} :: </f:if><f:if condition="{content.datePublished}">ver&ouml;ffentlicht am <f:format.date format="d.m.Y">{content.datePublished}</f:format.date></f:if></em>
+<h2>{content.title -> f:format.stripTags()}</h2>
+<p>{content.lead -> f:format.stripTags()}</p>
+<neos:link.node node="{content.node}">Read more..</neos:link.node>

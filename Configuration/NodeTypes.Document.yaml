@@ -1,0 +1,57 @@
+'Webandco.Blog:DocumentPost':
+  abstract: false
+  superTypes:
+    'Webandco.Base:Document': true
+    'Webandco.Taxonomy:TaxonomyMixin': true
+    'Flowpack.Listable:ListableMixin': true
+  ui:
+    label: 'Post'
+    icon: icon-file
+    group: 'blog'
+
+  childNodes:
+    title:
+      type: 'TYPO3.Neos.NodeTypes:Headline'
+    lead:
+      type: 'TYPO3.Neos.NodeTypes:Text'
+    image:
+      type: 'TYPO3.Neos.NodeTypes:Image'
+    main:
+      type: 'TYPO3.Neos:ContentCollection'
+
+  properties:
+    datePublished:
+      type: DateTime
+      ui:
+        label: 'Publication Date'
+        reloadIfChanged: true
+        inspector:
+          group: document
+    author:
+      type: string
+      ui:
+        label: Author
+        inspector:
+          group: document
+    relatedPosts:
+      type: references
+      ui:
+        label: 'Related Posts'
+        inspector:
+          group: document
+          editorOptions:
+            nodeTypes: ['Webandco.Blog:Post']
+
+'Webandco.Blog:DocumentOverview':
+  abstract: false
+  superTypes:
+    'Webandco.Base:Document': true
+  ui:
+    label: 'Blog Overview'
+    icon: icon-file
+    group: 'blog'
+  childNodes:
+    main:
+      type: 'TYPO3.Neos:ContentCollection'
+    sidebar:
+      type: 'TYPO3.Neos:ContentCollection'

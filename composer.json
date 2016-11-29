@@ -1,0 +1,21 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "webandco/blog",
+    "require": {
+        "typo3/neos": "^2.0",
+        "flowpack/listable": "^0.4",
+        "webandco/base": "*",
+        "webandco/neos-taxonomy": "^2.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Webandco\\Blog": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Webandco.Blog"
+        }
+    }
+}

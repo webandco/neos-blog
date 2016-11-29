@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace ts=TYPO3\TypoScript\ViewHelpers}
+<html>
+<head></head>
+<body>
+    <f:section name="body">
+        <div class="row">
+            <div class="col-sm-9">
+                {content.main -> f:format.raw()}
+            </div>
+            <div class="col-sm-3">
+                {content.sidebar -> f:format.raw()}
+            </div>
+        </div>
+    </f:section>
+</body>
+</html>

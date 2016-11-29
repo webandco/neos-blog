@@ -1,0 +1,14 @@
+prototype(Webandco.Blog:TagOverview) < prototype(TYPO3.Neos:Content) {
+    tags = TYPO3.TypoScript:Collection {
+        collection = ${q(node).closest('[instanceof Webandco.Blog:DocumentOverview]').children('[instanceof Webandco.Blog:DocumentPost]').property('taxonomies')}
+        itemRenderer = Webandco.Blog:TagOverviewItem
+        itemName = 'node'
+        iterationName = 'iterator'
+        @process.wrapInUl = ${value}
+    }
+}
+
+prototype(Webandco.Blog:TagOverviewItem) < prototype(TYPO3.Neos:Content) {
+    templatePath = 'resource://Webandco.Blog/Private/Templates/NodeTypes/TagOverviewItem.html'
+    tag = ${node.properties.title}
+}

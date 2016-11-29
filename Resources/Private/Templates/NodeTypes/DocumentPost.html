@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace ts=TYPO3\TypoScript\ViewHelpers}
+<html>
+<head></head>
+<body>
+    <f:section name="body">
+        <div class="content">
+		    {content.title -> f:format.raw()}
+		    {content.lead -> f:format.raw()}
+		    {content.image -> f:format.raw()}
+		    {content.main -> f:format.raw()}
+	    </div>
+    </f:section>
+</body>
+</html>

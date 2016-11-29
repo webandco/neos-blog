@@ -1,0 +1,36 @@
+root.webandcoBlog {
+    @position = 'start'
+	condition = ${q(node).is('[instanceof Webandco.Blog:DocumentOverview]')}
+	type = 'Webandco.Blog:PageOverview'
+}
+
+prototype(Webandco.Blog:PageOverview) < prototype(TYPO3.Neos:Page) {
+    bodyTag {
+        attributes.class = 'blog'
+    }
+}
+
+prototype(TYPO3.Neos:PrimaryContent) {
+    webandcoBlog {
+        @position = 'before default'
+        condition = ${q(node).is('[instanceof Webandco.Blog:DocumentOverview]')}
+        type = 'Webandco.Blog:DocumentOverview'
+    }
+}
+
+prototype(Webandco.Blog:DocumentOverview) {
+
+    sectionName = 'body'
+
+    content {
+        main = ContentCollection {
+            nodePath = 'main'
+        }
+        sidebar = ContentCollection {
+            nodePath = 'sidebar'
+        }
+    }
+}
+
+
+
