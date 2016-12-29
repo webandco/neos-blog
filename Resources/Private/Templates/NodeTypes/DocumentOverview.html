@@ -5,12 +5,22 @@
 <head></head>
 <body>
     <f:section name="body">
-        <div class="row">
-            <div class="col-sm-9">
-                {content.main -> f:format.raw()}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="underlined-title">
+                        <h1>Blog</h1>
+                        <hr>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-3">
-                {content.sidebar -> f:format.raw()}
+            <div class="row">
+                <div class="col-sm-9">
+                    {content.main -> f:format.raw()}
+                </div>
+                <div class="col-sm-3">
+                    {content.sidebar -> f:format.raw()}
+                </div>
             </div>
         </div>
     </f:section>

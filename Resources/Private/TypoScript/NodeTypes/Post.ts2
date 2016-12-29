@@ -22,61 +22,60 @@ prototype(Webandco.Blog:DocumentPost) {
 
     sectionName = 'body'
 
-    content {
-       title = TYPO3.Neos.NodeTypes:Headline {
-            @override.node = ${q(node).children('title').get(0)}
-            @cache {
-                 mode = 'cached'
+    title = TYPO3.Neos.NodeTypes:Headline {
+        @override.node = ${q(node).children('title').get(0)}
+        @cache {
+             mode = 'cached'
 
-                 entryIdentifier {
-                     collection = ${node}
-                 }
+             entryIdentifier {
+                 collection = ${node}
+             }
 
-                 entryTags {
-                     1 = ${'Node_' + node.identifier}
-                 }
+             entryTags {
+                 1 = ${'Node_' + node.identifier}
+             }
 
-                 maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
-            }
-       }
+             maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
+        }
+    }
 
-       lead = TYPO3.Neos.NodeTypes:Text {
-            @override.node = ${q(node).children('lead').get(0)}
-            @cache {
-                 mode = 'cached'
+    lead = TYPO3.Neos.NodeTypes:Text {
+        @override.node = ${q(node).children('lead').get(0)}
+        @cache {
+             mode = 'cached'
 
-                 entryIdentifier {
-                     collection = ${node}
-                 }
+             entryIdentifier {
+                 collection = ${node}
+             }
 
-                 entryTags {
-                     1 = ${'Node_' + node.identifier}
-                 }
+             entryTags {
+                 1 = ${'Node_' + node.identifier}
+             }
 
-                 maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
-            }
-       }
+             maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
+        }
+    }
 
-       image = TYPO3.Neos.NodeTypes:Image {
-            @override.node = ${q(node).children('image').get(0)}
-            @cache {
-                 mode = 'cached'
+    image = TYPO3.Neos.NodeTypes:Image {
+        @override.node = ${q(node).children('image').get(0)}
+        imageClassName = 'img-responsive'
+        @cache {
+             mode = 'cached'
 
-                 entryIdentifier {
-                     collection = ${node}
-                 }
+             entryIdentifier {
+                 collection = ${node}
+             }
 
-                 entryTags {
-                     1 = ${'Node_' + node.identifier}
-                 }
+             entryTags {
+                 1 = ${'Node_' + node.identifier}
+             }
 
-                 maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
-            }
-       }
+             maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
+        }
+    }
 
-       main = ContentCollection {
-            nodePath = 'main'
-       }
+    main = ContentCollection {
+        nodePath = 'main'
     }
 }
 

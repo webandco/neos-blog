@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 {namespace neos=TYPO3\Neos\ViewHelpers}
 {namespace ts=TYPO3\TypoScript\ViewHelpers}
+{namespace media=TYPO3\Media\ViewHelpers}
 <html>
 <head></head>
 <body>
     <f:section name="body">
-        <div class="content">
-		    {content.title -> f:format.raw()}
-		    {content.lead -> f:format.raw()}
-		    {content.image -> f:format.raw()}
-		    {content.main -> f:format.raw()}
-	    </div>
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="underlined-title">
+							<h1>{title -> f:format.raw()}</h1>
+							<hr>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						{image -> f:format.raw()}
+						<div class="meta">
+							<f:if condition="{author}">
+								<span>Von {author}</span>
+							</f:if>
+							<f:if condition="{datePublished}">
+								<span>:: ver&ouml;ffentlicht am <f:format.date format="d.m.Y">{datePublished}</f:format.date></span>
+							</f:if>
+						</div>
+						<i>{lead -> f:format.raw()}</i>
+						{main -> f:format.raw()}
+					</div>
+				</div>
+			</div>
+		</div>
     </f:section>
 </body>
 </html>
