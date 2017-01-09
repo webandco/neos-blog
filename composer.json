@@ -4,7 +4,7 @@
     "name": "webandco/blog",
     "require": {
         "typo3/neos": "^2.0",
-        "flowpack/listable": "^0.4",
+        "flowpack/listable": "1.0",
         "webandco/neos-base": "*",
         "webandco/neos-taxonomy": "^2.0"
     },
