@@ -11,24 +11,24 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="underlined-title">
-							<h1>{title -> f:format.raw()}</h1>
+							<h1>{content.title -> f:format.raw()}</h1>
 							<hr>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						{image -> f:format.raw()}
+						{content.image -> f:format.raw()}
 						<div class="meta">
-							<f:if condition="{author}">
-								<span>Von {author}</span>
+							<f:if condition="{content.author}">
+								<span>Von {content.author}</span>
 							</f:if>
-							<f:if condition="{datePublished}">
-								<span>:: ver&ouml;ffentlicht am <f:format.date format="d.m.Y">{datePublished}</f:format.date></span>
+							<f:if condition="{content.datePublished}">
+								<span>:: ver&ouml;ffentlicht am <f:format.date format="d.m.Y">{content.datePublished}</f:format.date></span>
 							</f:if>
 						</div>
-						<i>{lead -> f:format.raw()}</i>
-						{main -> f:format.raw()}
+						<i>{content.lead -> f:format.raw()}</i>
+						{content.main -> f:format.raw()}
 					</div>
 				</div>
 			</div>

@@ -5,5 +5,5 @@
         <img class="img-responsive" src="{media:uri.image(asset: content.image, maximumWidth: 500, maximumHeight: 150, allowCropping: true)}"/>
     </f:if>
     <neos:link.node node="{content.node}">{content.title -> f:format.stripTags()}</neos:link.node><br />
-    <i><f:if condition="{content.author}">{content.author} :: </f:if><f:if condition="{content.datePublished}"><f:format.date format="d.m.Y">{content.datePublished}</f:format.date></f:if></i>
+    <i><f:if condition="{content.author}">{content.author} :: </f:if><f:if condition="{content.datePublished}"> - <f:format.date format="d.m.Y">{content.datePublished}</f:format.date></f:if></i>
 </div>
