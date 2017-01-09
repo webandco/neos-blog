@@ -1,32 +1,12 @@
 {
-    "name": "webandco/neos-blog",
-    "type": "typo3-flow-package",
-    "description": "web&co neos blog with taxonomies",
-    "keywords": ["typo3", "flow", "neos", "blog", "taxonomy"],
-    "homepage": "http://webandco.com",
-    "license": "GPL-3.0+",
-    "authors": [
-        {
-            "name": "Markus Pfeifenberger",
-            "email": "markus@webandco.com",
-            "homepage": "http://webandco.com",
-            "role": "Developer"
-        },
-        {
-            "name": "David Spiola",
-            "email": "david@webandco.com",
-            "homepage": "http://webandco.com",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "email": "support@webandco.com"
-    },
+    "description": "",
+    "type": "neos-package",
+    "name": "webandco/blog",
     "require": {
         "typo3/neos": "^2.0",
         "flowpack/listable": "^0.4",
-        "webandco/neos-base": "^1.0",
-        "webandco/neos-taxonomy": "^2.1"
+        "webandco/neos-base": "*",
+        "webandco/neos-taxonomy": "^2.0"
     },
     "autoload": {
         "psr-0": {
