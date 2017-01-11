@@ -23,7 +23,7 @@ prototype(Webandco.Blog:DocumentPost) {
     sectionName = 'body'
 
     content {
-       title = TYPO3.Neos.NodeTypes:Headline {
+        title = TYPO3.Neos.NodeTypes:Headline {
             @override.node = ${q(node).children('title').get(0)}
             @cache {
                  mode = 'cached'
@@ -38,9 +38,9 @@ prototype(Webandco.Blog:DocumentPost) {
 
                  maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
             }
-       }
+        }
 
-       lead = TYPO3.Neos.NodeTypes:Text {
+        lead = TYPO3.Neos.NodeTypes:Text {
             @override.node = ${q(node).children('lead').get(0)}
             @cache {
                  mode = 'cached'
@@ -55,9 +55,9 @@ prototype(Webandco.Blog:DocumentPost) {
 
                  maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
             }
-       }
+        }
 
-       image = TYPO3.Neos.NodeTypes:Image {
+        image = TYPO3.Neos.NodeTypes:Image {
             @override.node = ${q(node).children('image').get(0)}
             attributes.class = "img-responsive"
             @cache {
@@ -73,11 +73,13 @@ prototype(Webandco.Blog:DocumentPost) {
 
                  maximumLifetime = ${q(node).context({'invisibleContentShown': true}).cacheLifetime()}
             }
-       }
+        }
 
-       main = ContentCollection {
+        main = ContentCollection {
             nodePath = 'main'
-       }
+        }
+
+
     }
 }
 

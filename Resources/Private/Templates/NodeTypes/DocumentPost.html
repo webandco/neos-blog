@@ -29,6 +29,10 @@
 						</div>
 						<i>{content.lead -> f:format.raw()}</i>
 						{content.main -> f:format.raw()}
+						<hr/>
+						<f:for each="{taxonomies}" as="taxonomy">
+							<neos:link.node node="{taxonomy}" class="btn btn-default">{taxonomy.properties.title}</neos:link.node></li>&nbsp;
+						</f:for>
 					</div>
 				</div>
 			</div>
