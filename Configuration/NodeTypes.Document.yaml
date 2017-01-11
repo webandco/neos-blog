@@ -33,14 +33,14 @@
         label: Author
         inspector:
           group: document
-    relatedPosts:
-      type: references
-      ui:
-        label: 'Related Posts'
-        inspector:
-          group: document
-          editorOptions:
-            nodeTypes: ['Webandco.Blog:Post']
+#    relatedPosts:
+#      type: references
+#      ui:
+#        label: 'Related Posts'
+#        inspector:
+#          group: document
+#          editorOptions:
+#            nodeTypes: ['Webandco.Blog:Post']
 
 'Webandco.Blog:DocumentOverview':
   abstract: false
