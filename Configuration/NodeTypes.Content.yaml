@@ -1,6 +1,6 @@
 'Webandco.Blog:TagOverview':
   superTypes:
-    'TYPO3.Neos:Content': true
+    'Neos.Neos:Content': true
   ui:
     label: 'Tag Overview'
     icon: 'icon-gear'

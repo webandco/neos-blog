@@ -11,13 +11,13 @@
 
   childNodes:
     title:
-      type: 'TYPO3.Neos.NodeTypes:Headline'
+      type: 'Neos.Neos.NodeTypes:Headline'
     lead:
-      type: 'TYPO3.Neos.NodeTypes:Text'
+      type: 'Neos.Neos.NodeTypes:Text'
     image:
-      type: 'TYPO3.Neos.NodeTypes:Image'
+      type: 'Neos.Neos.NodeTypes:Image'
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
 
   properties:
     datePublished:
@@ -52,6 +52,6 @@
     group: 'blog'
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
     sidebar:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
