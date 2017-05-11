@@ -26,7 +26,7 @@
         "neos/neos": "^3.0",
         "flowpack/listable": "^2.0",
         "webandco/neos-base": "*",
-        "webandco/neos-taxonomy": "^2.0"
+        "webandco/neos-taxonomy": "^3.0"
     },
     "autoload": {
         "psr-4": {
