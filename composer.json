@@ -23,7 +23,7 @@
         "email": "support@webandco.com"
     },
     "require": {
-        "typo3/neos": "^3.0",
+        "neos/neos": "^3.0",
         "flowpack/listable": "^2.0",
         "webandco/neos-base": "*",
         "webandco/neos-taxonomy": "^2.0"
