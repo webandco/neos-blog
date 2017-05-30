@@ -4,7 +4,7 @@ root.webandcoBlog {
 	type = 'Webandco.Blog:PageOverview'
 }
 
-prototype(Webandco.Blog:PageOverview) < prototype(TYPO3.Neos:Page) {
+prototype(Webandco.Blog:PageOverview) < prototype(Neos.Neos:Page) {
     bodyTag {
         attributes.class = 'blog'
     }

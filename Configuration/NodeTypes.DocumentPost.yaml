@@ -1,0 +1,9 @@
+'Webandco.Blog:DocumentPost':
+  abstract: false
+  superTypes:
+    'Webandco.Base:Document': true
+    'Webandco.Blog:DocumentPostPropertyMixin': true
+  ui:
+    label: 'Post'
+    icon: icon-file
+    group: 'blog'

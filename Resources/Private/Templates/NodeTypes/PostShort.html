@@ -2,9 +2,6 @@
 {namespace media=Neos\Media\ViewHelpers}
 
 <div class="post-short">
-    <f:if condition="{content.image}">
-        <img class="img-responsive" src="{media:uri.image(asset: content.image, maximumWidth: 1500, maximumHeight: 300, allowCropping: true)}"/>
-    </f:if>
     <div class="content">
         <em><f:if condition="{content.author}">{content.author} :: </f:if><f:if condition="{content.datePublished}">ver&ouml;ffentlicht am <f:format.date format="d.m.Y">{content.datePublished}</f:format.date></f:if></em>
         <h2>{content.title -> f:format.stripTags()}</h2>

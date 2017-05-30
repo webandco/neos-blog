@@ -1,0 +1,73 @@
+prototype(Webandco.Blog:DocumentPost.Document) < prototype(Neos.Neos:Page) {
+    bodyTag {
+        attributes.class = 'post'
+    }
+
+    body {
+        content = Webandco.Blog:DocumentPost.Renderer
+    }
+}
+
+prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
+    image = Neos.Fusion:Tag {
+        @position = 'after header'
+        tagName = 'img'
+        attributes.src = Neos.Fusion:Case {
+            asset {
+            condition = ${Type.isObject(q(node).property('imageSrc'))}
+            renderer = Neos.Neos:ImageUri {
+                allowCropping = true
+                allowUpScaling = true
+                asset  = ${q(node).property('imageSrc')}
+            }
+        }
+
+        resource {
+            condition = ${String.indexOf(q(node).property('imageSrc'), 'resource') >= 0}
+            renderer = Neos.Fusion:ResourceUri {
+                path = ${q(node).property('imageSrc')}
+            }
+        }
+
+        fallback {
+            condition = ${true}
+                renderer = '/_Resources/Static/Packages/Neos.Neos/Images/dummy-image.svg'
+            }
+        }
+
+        attributes.alt = ${q(node).property('imageAlt')}
+    }
+
+    blogHeader = Neos.Fusion:Tag {
+        @position = 'after image'
+        tagName = 'header'
+        content = Neos.Fusion:Array {
+            headline = Neos.Fusion:Tag {
+                tagName = 'h1'
+                content = ${q(node).property('headline')}
+                @process.makeEditable = Neos.Neos:ContentElementEditable
+                @process.makeEditable.property = ${'headline'}
+            }
+
+            lead = Neos.Fusion:Tag {
+                tagName = 'p'
+                content = ${q(node).property('lead')}
+                @process.makeEditable = Neos.Neos:ContentElementEditable
+                @process.makeEditable.property = ${'lead'}
+            }
+
+            meta = Neos.Fusion:Template {
+                templatePath = 'resource://Webandco.Blog/Private/Templates/FusionObjects/Meta.html'
+                author = ${q(node).property('author')}
+                datePublished = ${q(node).property('datePublished')}
+            }
+        }
+    }
+
+
+    main {
+        @position = 'after blogHeader'
+    }
+
+    @process.contentElementWrapping = Neos.Neos:ContentElementWrapping
+}

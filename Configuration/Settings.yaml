@@ -8,3 +8,8 @@ Neos:
         blog:
           position: 200
           label: 'Blog'
+    userInterface:
+      translation:
+        autoInclude:
+          Webandco.Blog:
+            - 'NodeTypes/*'
