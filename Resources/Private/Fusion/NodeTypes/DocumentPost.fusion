@@ -9,34 +9,7 @@ prototype(Webandco.Blog:DocumentPost.Document) < prototype(Neos.Neos:Page) {
 }
 
 prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
-    image = Neos.Fusion:Tag {
-        @position = 'after header'
-        tagName = 'img'
-        attributes.src = Neos.Fusion:Case {
-            asset {
-            condition = ${Type.isObject(q(node).property('imageSrc'))}
-            renderer = Neos.Neos:ImageUri {
-                allowCropping = true
-                allowUpScaling = true
-                asset  = ${q(node).property('imageSrc')}
-            }
-        }
-
-        resource {
-            condition = ${String.indexOf(q(node).property('imageSrc'), 'resource') >= 0}
-            renderer = Neos.Fusion:ResourceUri {
-                path = ${q(node).property('imageSrc')}
-            }
-        }
-
-        fallback {
-            condition = ${true}
-                renderer = '/_Resources/Static/Packages/Neos.Neos/Images/dummy-image.svg'
-            }
-        }
-
-        attributes.alt = ${q(node).property('imageAlt')}
-    }
+    image = Webandco.Blog:Image
 
     blogHeader = Neos.Fusion:Tag {
         @position = 'after image'
@@ -44,14 +17,14 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
         content = Neos.Fusion:Array {
             headline = Neos.Fusion:Tag {
                 tagName = 'h1'
-                content = ${q(node).property('headline')}
+                content = ${q(node).property('headline') != null ? q(node).property('headline') : String.stripTags(q(node).children('title').property('title')) }
                 @process.makeEditable = Neos.Neos:ContentElementEditable
                 @process.makeEditable.property = ${'headline'}
             }
 
             lead = Neos.Fusion:Tag {
                 tagName = 'p'
-                content = ${q(node).property('lead')}
+                content = ${q(node).property('lead') != null ? q(node).property('lead') : q(node).children('lead').property('text') }
                 @process.makeEditable = Neos.Neos:ContentElementEditable
                 @process.makeEditable.property = ${'lead'}
             }
@@ -64,10 +37,128 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
         }
     }
 
-
     main {
         @position = 'after blogHeader'
     }
 
+    taxonomies = Neos.Fusion:Tag {
+        tagName = 'div'
+        attributes.class = 'container'
+        content = Neos.Fusion:Array {
+            hr = Neos.Fusion:Tag {
+                tagName = 'hr'
+            }
+            items = Neos.Fusion:Collection {
+                collection = ${q(node).property('taxonomies')}
+                itemRenderer = Neos.Fusion:Tag {
+                    tagName = 'a'
+                    attributes.class = 'btn btn-dark'
+                    attributes.href = Neos.Neos:NodeUri {
+                        node = ${item}
+                        @process.convertUris = Neos.Neos:ConvertUris {
+                            forceConversion = true
+                        }
+                    }
+                    content = ${item.properties.title}
+                }
+            }
+        }
+    }
+
     @process.contentElementWrapping = Neos.Neos:ContentElementWrapping
 }
+
+prototype(Webandco.Blog:DocumentPostShort) < prototype(Neos.Fusion:Tag) {
+    tagName = 'div'
+    attributes.class = 'post-short'
+    content = Neos.Fusion:Array {
+        image = Webandco.Blog:Image
+        content = Neos.Fusion:Tag {
+            tagName = 'div'
+            attributes.class = 'content'
+            content = Neos.Fusion:Array {
+                headline = Neos.Fusion:Tag {
+                    tagName = 'h2'
+                    content = ${String.stripTags(q(node).children('title').property('title'))}
+                }
+                lead = Neos.Fusion:Tag {
+                    tagName = 'p'
+                    content = ${String.stripTags(q(node).children('lead').property('text'))}
+                }
+                link = Neos.Fusion:Tag {
+                    tagName = 'a'
+                    attributes.class = 'btn btn-dark'
+                    attributes.href = Neos.Neos:NodeUri {
+                        node = ${node}
+                        @process.convertUris = Neos.Neos:ConvertUris {
+                            forceConversion = true
+                        }
+                    }
+                    content = 'mehr...'
+                }
+                @process.wrap = ${'<div class="content">' + value + '</div>'}
+            }
+        }
+    }
+}
+
+
+prototype(Webandco.Blog:DocumentPostTeaser) < prototype(Neos.Fusion:Tag) {
+    tagName = 'div'
+    attributes.class = 'post-teaser'
+    content = Neos.Fusion:Array {
+        image = Webandco.Blog:Image
+        link = Neos.Fusion:Tag {
+            tagName = 'a'
+            attributes.href = Neos.Neos:NodeUri {
+                node = ${node}
+                @process.convertUris = Neos.Neos:ConvertUris {
+                    forceConversion = true
+                }
+            }
+            content = ${q(node).property('title')}
+        }
+    }
+}
+
+prototype(Webandco.Blog:Image) < prototype(Neos.Fusion:Tag) {
+    tagName = 'img'
+    attributes.class = 'img-responsive'
+    attributes.src = Neos.Fusion:Case {
+        asset {
+        condition = ${Type.isObject(q(node).property('imageSrc'))}
+        renderer = Neos.Neos:ImageUri {
+            allowCropping = true
+            allowUpScaling = true
+            asset  = ${q(node).property('imageSrc')}
+        }
+    }
+
+    resource {
+        condition = ${String.indexOf(q(node).property('imageSrc'), 'resource') >= 0}
+        renderer = Neos.Fusion:ResourceUri {
+            path = ${q(node).property('imageSrc')}
+        }
+    }
+
+    fallback {
+        condition = ${true}
+            renderer = '/_Resources/Static/Packages/Neos.Neos/Images/dummy-image.svg'
+        }
+    }
+
+    attributes.alt = ${q(node).property('imageAlt')}
+}
+
+prototype(Webandco.Blog:Author) < prototype(Neos.Fusion:Tag) {
+    tagName = 'em'
+    content = Neos.Fusion:Array {
+        author = Neos.Fusion:Value {
+            value = ${q(node).property('author')}
+        }
+        datePublished = Neos.Fusion:Value {
+            value = ${' ver&ouml;ffentlicht am ' + Date.format(q(node).property('datePublished'), 'd.m.Y')}
+        }
+    }
+}
+

@@ -1,33 +1,17 @@
-root.webandcoBlog {
-    @position = 'start'
-	condition = ${q(node).is('[instanceof Webandco.Blog:DocumentOverview]')}
-	type = 'Webandco.Blog:PageOverview'
-}
-
-prototype(Webandco.Blog:PageOverview) < prototype(Neos.Neos:Page) {
+prototype(Webandco.Blog:DocumentOverview.Document) < prototype(Neos.Neos:Page) {
     bodyTag {
         attributes.class = 'blog'
     }
-}
+    body {
+        content {
+            main.@process.wrapGrid = ${'<div class="col-sm-8">' + value + '</div>'}
+            sidebar = ContentCollection {
+                @position = 'after main'
+                nodePath = 'sidebar'
+                @process.wrapGrid = ${'<div class="col-sm-4">' + value + '</div>'}
+            }
 
-prototype(TYPO3.Neos:PrimaryContent) {
-    webandcoBlog {
-        @position = 'before default'
-        condition = ${q(node).is('[instanceof Webandco.Blog:DocumentOverview]')}
-        type = 'Webandco.Blog:DocumentOverview'
-    }
-}
-
-prototype(Webandco.Blog:DocumentOverview) {
-
-    sectionName = 'body'
-
-    content {
-        main = ContentCollection {
-            nodePath = 'main'
-        }
-        sidebar = ContentCollection {
-            nodePath = 'sidebar'
+            @process.wrapGrid = ${'<div class="container"><div class="row">' + value + '</div></div>'}
         }
     }
 }
