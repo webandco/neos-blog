@@ -45,6 +45,7 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
     }
 
     taxonomies = Neos.Fusion:Tag {
+        @position = 'after main'
         tagName = 'div'
         attributes.class = 'container'
         content = Neos.Fusion:Array {
