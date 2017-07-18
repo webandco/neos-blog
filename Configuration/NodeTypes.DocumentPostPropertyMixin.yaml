@@ -13,6 +13,15 @@
           position: 1
 
   properties:
+    showImage:
+      type: boolean
+      defaultValue: true
+      ui:
+        label: 'Show image'
+        reloadIfChanged: true
+        inspector:
+          group: 'blog'
+          position: 40
     datePublished:
       type: DateTime
       ui:

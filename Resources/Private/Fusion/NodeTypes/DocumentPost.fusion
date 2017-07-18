@@ -9,7 +9,10 @@ prototype(Webandco.Blog:DocumentPost.Document) < prototype(Neos.Neos:Page) {
 }
 
 prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
-    image = Webandco.Blog:Image
+    image = Webandco.Blog:Image {
+        @position = 'start'
+        @if.render = ${q(node).property('showImage') == null || q(node).property('showImage')}
+    }
 
     blogHeader = Neos.Fusion:Tag {
         @position = 'after image'
