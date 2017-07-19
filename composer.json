@@ -22,9 +22,10 @@
     "support": {
         "email": "support@webandco.com"
     },
+    "minimum-stability": "dev",
     "require": {
         "neos/neos": "^3.0",
-        "flowpack/listable": "^2.0",
+        "flowpack/listable": "dev-master",
         "ttree/fusion-documentfinder": "^1.0",
         "webandco/neos-base": "*",
         "webandco/neos-page": "dev-master",
