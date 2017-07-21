@@ -28,7 +28,7 @@
         "webandco/neos-listable": "dev-master",
         "ttree/fusion-documentfinder": "^1.0",
         "webandco/neos-page": "dev-master",
-        "webandco/neos-taxonomy": "^3.0"
+        "webandco/neos-taxonomy": "dev-master"
     },
     "autoload": {
         "psr-4": {
