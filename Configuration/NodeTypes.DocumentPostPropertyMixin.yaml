@@ -1,7 +1,6 @@
 'Webandco.Blog:DocumentPostPropertyMixin':
   superTypes:
     'Webandco.Taxonomy:TaxonomyMixin': true
-    'Flowpack.Listable:ListableMixin': true
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'
