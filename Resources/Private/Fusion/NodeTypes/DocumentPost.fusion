@@ -9,8 +9,11 @@ prototype(Webandco.Blog:DocumentPost.Document) < prototype(Neos.Neos:Page) {
 }
 
 prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
+    articleStart = '<article>'
+    articleStart.@position = 'after header'
+
     image = Webandco.Blog:Image {
-        @position = 'start'
+        @position = 'after articleStart'
         @if.render = ${q(node).property('showImage') == null || q(node).property('showImage')}
     }
 
@@ -46,7 +49,7 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
 
     taxonomies = Neos.Fusion:Tag {
         @position = 'after main'
-        tagName = 'div'
+        tagName = 'aside'
         attributes.class = 'container'
         content = Neos.Fusion:Array {
             hr = Neos.Fusion:Tag {
@@ -68,6 +71,9 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
             }
         }
     }
+
+    articleEnd = '</article>'
+    articleEnd.@position = 'after taxonomies'
 
     @process.contentElementWrapping = Neos.Neos:ContentElementWrapping
 }
