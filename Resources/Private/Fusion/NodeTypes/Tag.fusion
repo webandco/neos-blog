@@ -1,4 +1,4 @@
-prototype(Webandco.Blog:TagOverview) < prototype(TYPO3.Neos:Content) {
+prototype(Webandco.Blog:TagOverview) < prototype(Neos.Neos:Content) {
     tags = TYPO3.TypoScript:Collection {
         collection = ${q(node).closest('[instanceof Webandco.Blog:DocumentOverview]').children('[instanceof Webandco.Blog:DocumentPost]').property('taxonomies')}
         itemRenderer = Webandco.Blog:TagOverviewItem
