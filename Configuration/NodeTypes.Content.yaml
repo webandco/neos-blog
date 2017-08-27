@@ -4,3 +4,19 @@
   ui:
     label: 'Tag Overview'
     icon: 'icon-gear'
+
+'Webandco.Blog.NodeTypes:BlogPosts':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: Blog posts
+    icon: icon-list
+    inlineEditable: true
+
+'Webandco.Blog.NodeTypes:LatestBlogPosts':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: Latest blog posts
+    icon: icon-list
+    inlineEditable: true

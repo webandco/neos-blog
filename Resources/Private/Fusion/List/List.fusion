@@ -1,0 +1,17 @@
+prototype(Webandco.Blog.NodeTypes:BlogPosts) < prototype(Flowpack.Listable:PaginatedCollection) {
+    collection = ${q(site).find('[instanceof Webandco.Blog:DocumentPost]').slice(0,5)}
+
+    prototype(Webandco.Blog:DocumentPost.Short) {
+        attributes.class = 'post-teaser'
+        content = Webandco.Blog:DocumentPost.Renderer.Minimal
+    }
+}
+
+
+prototype(Webandco.Blog.NodeTypes:LatestBlogPosts) < prototype(Flowpack.Listable:PaginatedCollection) {
+    collection = ${q(site).find('[instanceof Webandco.Blog:DocumentPost]').sort('datePublished', 'DESC')}
+}
+
+
+
+

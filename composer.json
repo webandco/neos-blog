@@ -25,8 +25,8 @@
     "minimum-stability": "dev",
     "require": {
         "neos/neos": "^3.0",
-        "webandco/neos-listable": "dev-master",
         "ttree/fusion-documentfinder": "^1.0",
+        "flowpack/listable": "dev-master",
         "webandco/neos-page": "dev-master",
         "webandco/neos-taxonomy": "dev-master"
     },

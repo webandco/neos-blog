@@ -23,14 +23,14 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
         content = Neos.Fusion:Array {
             headline = Neos.Fusion:Tag {
                 tagName = 'h1'
-                content = ${q(node).property('headline') != null ? q(node).property('headline') : String.stripTags(q(node).children('title').property('title')) }
+                content = ${q(node).property('headline') != null ? q(node).property('headline') : String.stripTags(q(node).children('title').property('title'))}
                 @process.makeEditable = Neos.Neos:ContentElementEditable
                 @process.makeEditable.property = ${'headline'}
             }
 
             lead = Neos.Fusion:Tag {
                 tagName = 'p'
-                content = ${q(node).property('lead') != null ? q(node).property('lead') : q(node).children('lead').property('text') }
+                content = ${q(node).property('lead') != null ? q(node).property('lead') : q(node).children('lead').property('text')}
                 @process.makeEditable = Neos.Neos:ContentElementEditable
                 @process.makeEditable.property = ${'lead'}
             }
@@ -78,40 +78,65 @@ prototype(Webandco.Blog:DocumentPost.Renderer) < prototype(Neos.Fusion:Array) {
     @process.contentElementWrapping = Neos.Neos:ContentElementWrapping
 }
 
-prototype(Webandco.Blog:DocumentPostShort) < prototype(Neos.Fusion:Tag) {
+prototype(Webandco.Blog:DocumentPost.Short) < prototype(Neos.Fusion:Tag) {
     tagName = 'div'
     attributes.class = 'post-short'
-    content = Neos.Fusion:Array {
-        image = Webandco.Blog:Image
-        content = Neos.Fusion:Tag {
-            tagName = 'div'
-            attributes.class = 'content'
-            content = Neos.Fusion:Array {
-                headline = Neos.Fusion:Tag {
-                    tagName = 'h2'
-                    content = ${String.stripTags(q(node).children('title').property('title'))}
-                }
-                lead = Neos.Fusion:Tag {
-                    tagName = 'p'
-                    content = ${String.stripTags(q(node).children('lead').property('text'))}
-                }
-                link = Neos.Fusion:Tag {
-                    tagName = 'a'
-                    attributes.class = 'btn btn-dark'
-                    attributes.href = Neos.Neos:NodeUri {
-                        node = ${node}
-                        @process.convertUris = Neos.Neos:ConvertUris {
-                            forceConversion = true
-                        }
-                    }
-                    content = 'mehr...'
-                }
-                @process.wrap = ${'<div class="content">' + value + '</div>'}
+    content = Webandco.Blog:DocumentPost.Renderer.Default
+}
+
+prototype(Webandco.Blog:DocumentPost.Renderer.Default) < prototype(Neos.Fusion:Array) {
+    image = Webandco.Blog:Image
+    content = Neos.Fusion:Tag {
+        tagName = 'div'
+        attributes.class = 'content'
+        content = Neos.Fusion:Array {
+            headline = Neos.Fusion:Tag {
+                tagName = 'h2'
+                content = ${q(node).children('title').get(0) != null ? q(node).children('title').get(0).properties.title : q(node).property('title')}
+                content.@process.clean = ${String.stripTags(value)}
             }
+            lead = Neos.Fusion:Tag {
+                tagName = 'p'
+                content = ${q(node).children('lead').get(0) != null ? q(node).children('lead').get(0).properties.tex : q(node).property('lead')}
+                content.@process.clean = ${String.stripTags(value)}
+            }
+            link = Neos.Fusion:Tag {
+                tagName = 'a'
+                attributes.class = 'btn btn-dark'
+                attributes.href = Neos.Neos:NodeUri {
+                    node = ${node}
+                    @process.convertUris = Neos.Neos:ConvertUris {
+                        forceConversion = true
+                    }
+                }
+                content = 'mehr...'
+            }
+            @process.wrap = ${'<div class="content">' + value + '</div>'}
         }
     }
 }
 
+prototype(Webandco.Blog:DocumentPost.Renderer.Minimal) < prototype(Neos.Fusion:Array) {
+    image = Webandco.Blog:Image
+    content = Neos.Fusion:Tag {
+        tagName = 'div'
+        attributes.class = 'content'
+        content = Neos.Fusion:Array {
+            link = Neos.Fusion:Tag {
+                tagName = 'a'
+                attributes.href = Neos.Neos:NodeUri {
+                    node = ${node}
+                    @process.convertUris = Neos.Neos:ConvertUris {
+                        forceConversion = true
+                    }
+                }
+                content = ${q(node).children('title').get(0) != null ? q(node).children('title').get(0).properties.title : q(node).property('title')}
+                content.@process.clean = ${String.stripTags(value)}
+            }
+            @process.wrap = ${'<div class="content">' + value + '</div>'}
+        }
+    }
+}
 
 prototype(Webandco.Blog:DocumentPostTeaser) < prototype(Neos.Fusion:Tag) {
     tagName = 'div'
@@ -136,23 +161,23 @@ prototype(Webandco.Blog:Image) < prototype(Neos.Fusion:Tag) {
     attributes.class = 'img-responsive'
     attributes.src = Neos.Fusion:Case {
         asset {
-        condition = ${Type.isObject(q(node).property('imageSrc'))}
-        renderer = Neos.Neos:ImageUri {
-            allowCropping = true
-            allowUpScaling = true
-            asset  = ${q(node).property('imageSrc')}
+            condition = ${Type.isObject(q(node).property('imageSrc'))}
+            renderer = Neos.Neos:ImageUri {
+                allowCropping = true
+                allowUpScaling = true
+                asset = ${q(node).property('imageSrc')}
+            }
         }
-    }
 
-    resource {
-        condition = ${String.indexOf(q(node).property('imageSrc'), 'resource') >= 0}
-        renderer = Neos.Fusion:ResourceUri {
-            path = ${q(node).property('imageSrc')}
+        resource {
+            condition = ${String.indexOf(q(node).property('imageSrc'), 'resource') >= 0}
+            renderer = Neos.Fusion:ResourceUri {
+                path = ${q(node).property('imageSrc')}
+            }
         }
-    }
 
-    fallback {
-        condition = ${true}
+        fallback {
+            condition = ${true}
             renderer = '/_Resources/Static/Packages/Neos.Neos/Images/dummy-image.svg'
         }
     }
