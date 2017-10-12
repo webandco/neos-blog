@@ -7,10 +7,14 @@
   ui:
     inspector:
       groups:
-        blog:
-          label: 'Blog'
+        article:
+          label: 'Article'
+          icon: 'icon-file'
           position: 1
-
+        image:
+          label: 'Image'
+          position: 5
+          icon: 'icon-image'
   properties:
     showImage:
       type: boolean
@@ -19,7 +23,7 @@
         label: 'Show image'
         reloadIfChanged: true
         inspector:
-          group: 'blog'
+          group: 'article'
           position: 40
     datePublished:
       type: DateTime
@@ -27,20 +31,23 @@
         label: 'Publication Date'
         reloadIfChanged: true
         inspector:
-          group: 'blog'
+          group: 'article'
+      validation:
+        'Neos.Neos/Validation/NotEmptyValidator': []
+        'Neos.Neos/Validation/DateTimeValidator': []
     author:
       type: string
       ui:
         label: Author
         inspector:
-          group: 'blog'
+          group: 'article'
     imageSrc:
       type: Neos\Media\Domain\Model\ImageInterface
       ui:
         label: i18n
         reloadIfChanged: TRUE
         inspector:
-          group: 'blog'
+          group: 'image'
           position: 50
           editorOptions:
             features:
