@@ -26,7 +26,7 @@
     "require": {
         "neos/neos": "^3.0",
         "ttree/fusion-documentfinder": "^1.0",
-        "flowpack/listable": "dev-master",
+        "flowpack/listable": "^3.0",
         "webandco/neos-page": "dev-master",
         "webandco/neos-taxonomy": "dev-master"
     },
