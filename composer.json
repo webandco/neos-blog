@@ -1,7 +1,7 @@
 {
     "description": "Blog implementaion for Neos CMS based on taxonomies and the listable package",
     "type": "neos-package",
-    "name": "webandco/blog",
+    "name": "webandco/neos-blog",
     "keywords": ["flow", "neos", "blog"],
     "homepage": "http://webandco.com",
     "license": "GPL-3.0+",
