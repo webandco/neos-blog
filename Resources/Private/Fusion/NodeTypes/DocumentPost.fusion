@@ -1,4 +1,4 @@
-prototype(Webandco.Blog:DocumentPost.Document) < prototype(Neos.Neos:Page) {
+prototype(Webandco.Blog:DocumentPost) < prototype(Neos.Neos:Page) {
     bodyTag {
         attributes.class = 'post'
     }
